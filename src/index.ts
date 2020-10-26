@@ -1,16 +1,13 @@
-import Axios from "axios";
 import { config } from 'dotenv';
+import express from 'express';
+import { createServer } from 'http';
+import { Routes } from './routes';
+
 
 (async () => {
   config();
-  try {
-    const { data } = await Axios.get('https://api.github.com/rate_limit', {
-      headers: {
-        Authorization: `token ${process.env.TOKEN}`
-      }
-    });
-    console.log(data);
-  } catch (err) {
-    console.log(err);
-  }
+  const app = express();
+  const server = createServer(app);
+  Routes.build(app);
+  server.listen(process.env.PORT, () => console.log(`Serveur sur le port ${process.env.PORT}`));
 })();
