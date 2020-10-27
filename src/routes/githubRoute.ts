@@ -1,15 +1,17 @@
 import { Router } from 'express';
-import { Controller } from '../controllers';
+import Controller from '../controllers';
 
 class GithubRoutes {
   public router: Router = Router();
   public constructor() {
-    this.init();
+    this.routes();
   }
 
-  public init() {
+  public routes() {
     this.router.get('/limit', Controller.getRateLimit);
     this.router.get('/repos', Controller.getAllRepos);
+    this.router.get('/lang', Controller.getAllLanguages);
+    this.router.get('/skills', Controller.getPointForEachLanguages);
   }
 }
 
