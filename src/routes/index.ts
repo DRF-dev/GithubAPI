@@ -10,7 +10,7 @@ import githubRouter from './githubRoute';
 
 class Routes {
   private app = express();
-  public constructor(private PORT: Number) {  }
+  public constructor(private PORT: Number) { }
 
   private basicProtectApp = () => {
     this.app.use(helmet())

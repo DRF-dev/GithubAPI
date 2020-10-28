@@ -18,11 +18,5 @@
      "baseUrl":"src/",
      "listFiles":false
   },
-  "include":[ 
-     "src/**/*"
-  ],
-  "exclude":[ 
-     "node_modules"
-  ],
-  "compileOnSave":false
+  "compileOnSave":true
 }
