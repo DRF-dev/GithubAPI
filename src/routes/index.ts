@@ -1,16 +1,17 @@
 import { json } from 'body-parser';
-import * as cors from 'cors';
-import * as express from 'express';
-import * as rateLimit from 'express-rate-limit';
-import * as helmet from 'helmet';
+import cors from 'cors';
+import express from 'express';
+import rateLimit from 'express-rate-limit';
+import helmet from 'helmet';
 import { createServer } from 'http';
-import * as morgan from 'morgan';
+import morgan from 'morgan';
 import { Env } from '../helpers/dotenv';
 import githubRouter from './githubRoute';
 
 class Routes {
-  private app = express();
-  public constructor(private PORT: Number) { }
+  public app = express();
+
+  public constructor(private PORT: number) { }
 
   private basicProtectApp = () => {
     this.app.use(helmet())
@@ -19,7 +20,7 @@ class Routes {
       .use(json())
       .use(rateLimit({
         windowMs: 15 * 60 * 1000, // 15 minutes
-        max: 100
+        max: 100,
       }));
   };
 

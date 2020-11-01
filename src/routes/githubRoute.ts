@@ -3,6 +3,7 @@ import Controller from '../controllers';
 
 class GithubRoutes {
   public router: Router = Router();
+
   public constructor() {
     this.routes();
   }
