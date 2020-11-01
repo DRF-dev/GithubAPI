@@ -3,19 +3,15 @@ import App from '../routes';
 
 App.build();
 
+const TestRoutes = async (path: string, data: boolean) => {
+  const { status, body } = await request(App.app).get(path);
+  expect(status).toBe(200);
+  if (data) expect(body.data).toBeDefined();
+};
+
 describe('Controllers', () => {
-  it('Should return 2', () => {
-    expect(1 + 1).toBe(2);
-  });
-  it('Should return 3', () => {
-    expect(1 + 2).toBe(3);
-  });
-  it('Should return 4', () => {
-    expect(1 + 3).toBe(4);
-  });
-  it('Should return a value', async () => {
-    const res = await request(App.app).get('/git/limit');
-    expect(res.status).toBe(200);
-    expect(res.body.data.rate.limit).toBeDefined();
-  });
+  it('Status code of /git/limit is 200', () => TestRoutes('/git/limit', true));
+  it('Status code of /git/repos is 200', () => TestRoutes('/git/repos', true));
+  it('Status code of /git/lang is 200', () => TestRoutes('/git/lang', true));
+  it('Status code of /git/skills is 200', () => TestRoutes('/git/skills', false));
 });
